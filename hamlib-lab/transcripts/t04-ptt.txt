@@ -1,0 +1,11 @@
+$ printf "t\\nT 1\\nt\\nT 0\\nt\\nq\\n" | rigctl -m 1 -P RIG
+
+Rig command: PTT: 0
+
+Rig command: 
+Rig command: PTT: 1
+
+Rig command: 
+Rig command: PTT: 0
+
+Rig command: 

@@ -1,0 +1,15 @@
+$ printf "f\\nF 14074000\\nf\\nm\\nM USB 2700\\nm\\nq\\n" | rigctl -m 1
+
+Rig command: Frequency: 145000000
+
+Rig command: 
+Rig command: Frequency: 14074000
+
+Rig command: Mode: FM
+Passband: 15000
+
+Rig command: 
+Rig command: Mode: USB
+Passband: 2700
+
+Rig command: 

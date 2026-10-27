@@ -1,0 +1,29 @@
+site_name: Hamlib for Mere Mortals
+site_description: One library that talks to hundreds of radios so your programs do not have to. Driving a rig with rigctl, sharing it through rigctld, turning an antenna with rotctl, and practising all of it on a dummy radio that can never transmit, with the safety rules and the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/hamlib-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Hamlib Is: what-hamlib-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Hamlib: installing-hamlib.md
+  - Your First Connection: your-first-connection.md
+  - Frequency and Mode: frequency-and-mode.md
+  - PTT and Staying Safe: ptt-and-safety.md
+  - Rotators with rotctl: rotators.md
+  - rigctld as a Shared Service: rigctld-as-a-shared-service.md
+  - Wiring Up Fldigi and WSJT-X: fldigi-and-wsjtx.md
+  - Permissions and Serial Devices: permissions-and-serial.md
+  - Debugging with Verbose Output: debugging.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

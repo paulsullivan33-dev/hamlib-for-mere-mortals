@@ -1,0 +1,36 @@
+$ rigctl --list   (first 25 lines)
+ Rig #  Mfg                    Model                   Version         Status      Macro
+     1  Hamlib                 Dummy                   20221128.0      Stable      RIG_MODEL_DUMMY
+     2  Hamlib                 NET rigctl              20230328.0      Stable      RIG_MODEL_NETRIGCTL
+     4  FLRig                  FLRig                   20221109.0      Stable      RIG_MODEL_FLRIG
+     5  TRXManager             TRXManager 5.7.630+     20210613.0      Stable      RIG_MODEL_TRXMANAGER_RIG
+     6  Hamlib                 Dummy No VFO            20220510.0      Stable      RIG_MODEL_DUMMY_NOVFO
+  1001  Yaesu                  FT-847                  20220525.0      Stable      RIG_MODEL_FT847
+  1003  Yaesu                  FT-1000D                20211111.0      Stable      RIG_MODEL_FT1000D
+  1004  Yaesu                  MARK-V FT-1000MP        20230104.0      Stable      RIG_MODEL_FT1000MPMKV
+  1005  Yaesu                  FT-747GX                20220819.1      Stable      RIG_MODEL_FT747
+  1006  Yaesu                  FT-757GX                20220429.0      Stable      RIG_MODEL_FT757
+  1007  Yaesu                  FT-757GXII              20200325.0      Stable      RIG_MODEL_FT757GXII
+  1009  Yaesu                  FT-767GX                20210221.0      Stable      RIG_MODEL_FT767
+  1010  Yaesu                  FT-736R                 20221218.0      Stable      RIG_MODEL_FT736R
+  1011  Yaesu                  FT-840                  20200323.0      Stable      RIG_MODEL_FT840
+  1013  Yaesu                  FT-900                  20200323.0      Stable      RIG_MODEL_FT900
+  1014  Yaesu                  FT-920                  20220529.0      Stable      RIG_MODEL_FT920
+  1015  Yaesu                  FT-890                  20200323.0      Stable      RIG_MODEL_FT890
+  1016  Yaesu                  FT-990                  20211231.0      Stable      RIG_MODEL_FT990
+  1017  Yaesu                  FRG-100                 20160409.0      Stable      RIG_MODEL_FRG100
+  1018  Yaesu                  FRG-9600                20160409.0      Alpha       RIG_MODEL_FRG9600
+  1019  Yaesu                  FRG-8800                20160409.0      Alpha       RIG_MODEL_FRG8800
+  1020  Yaesu                  FT-817                  20220419.0      Stable      RIG_MODEL_FT817
+  1021  Yaesu                  FT-100                  20211111.0      Stable      RIG_MODEL_FT100
+  1022  Yaesu                  FT-857                  20230206.0      Stable      RIG_MODEL_FT857
+...
+$ rigctl --list | wc -l
+284
+
+$ rigctl --list | grep -i dummy
+     1  Hamlib                 Dummy                   20221128.0      Stable      RIG_MODEL_DUMMY
+     6  Hamlib                 Dummy No VFO            20220510.0      Stable      RIG_MODEL_DUMMY_NOVFO
+
+$ rotctl --list | grep -i dummy
+     1  Hamlib                 Dummy                   20220531.0      Stable        ROT_MODEL_DUMMY

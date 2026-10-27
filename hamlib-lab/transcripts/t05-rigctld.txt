@@ -1,0 +1,26 @@
+$ rigctld -m 1 -P RIG -t 4532 &      (daemon started in the background)
+
+--- client A: a first rigctl, through the NET rigctl backend (model 2) ---
+$ printf "f\\nF 7074000\\nq\\n" | rigctl -m 2 -r 127.0.0.1:4532
+
+Rig command: Frequency: 145000000
+
+Rig command: 
+Rig command: 
+--- client B: a SECOND, separate rigctl — it sees client A's frequency ---
+$ printf "f\\nm\\nq\\n" | rigctl -m 2 -r 127.0.0.1:4532
+
+Rig command: Frequency: 7074000
+
+Rig command: Mode: FM
+Passband: 15000
+
+Rig command: 
+--- client C: PTT through the daemon ---
+$ printf "T 1\\nt\\nT 0\\nq\\n" | rigctl -m 2 -r 127.0.0.1:4532
+
+Rig command: 
+Rig command: PTT: 1
+
+Rig command: 
+Rig command: 

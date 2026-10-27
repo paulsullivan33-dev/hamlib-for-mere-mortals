@@ -1,0 +1,9 @@
+$ id
+uid=0(root) gid=0(root) groups=0(root)
+
+$ getent group dialout
+dialout:x:20:
+
+$ ls /dev/ttyUSB* /dev/ttyACM* 2>&1
+ls: cannot access '/dev/ttyUSB*': No such file or directory
+ls: cannot access '/dev/ttyACM*': No such file or directory

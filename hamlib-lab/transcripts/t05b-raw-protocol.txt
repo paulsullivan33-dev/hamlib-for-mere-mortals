@@ -1,0 +1,26 @@
+$ printf "f\\n" | nc -q 1 127.0.0.1 4532
+145000000
+
+$ printf "\\\\get_freq\\n" | nc -q 1 127.0.0.1 4532
+145000000
+
+$ printf "F 14060000\\n" | nc -q 1 127.0.0.1 4532   (a set: the answer is a return code)
+RPRT 0
+
+$ printf "Z\\n" | nc -q 1 127.0.0.1 4532   (a command that does not exist)
+
+$ printf "\\\\dump_state\\n" | nc -q 1 127.0.0.1 4532 | head -14
+1
+1
+0
+150000.000000 1500000000.000000 0x1ff -1 -1 0x77e00007 0xf
+0 0 0 0 0 0 0
+150000.000000 1500000000.000000 0x1ff 5000 100000 0x77e00007 0xf
+0 0 0 0 0 0 0
+0x1ff 1
+0x1ff 0
+0 0
+0xc 2400
+0xc 1800
+0xc 3000
+0xc 0

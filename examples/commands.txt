@@ -1,0 +1,65 @@
+Hamlib — the distilled commands
+====================================================================
+Placeholders: <model> is a model number
+from the list; <dev> is a serial device
+(e.g. /dev/ttyUSB0); <addr> is a network
+address like 127.0.0.1:4532.
+
+FIRST LOOK (chapters 2-3)
+--------------------------------------------------------------------
+  rigctl --version                # the library, dated
+  rigctl --list                   # every rig model (~284 lines)
+  rotctl --list                   # every rotator model (~50)
+  rigctl -m 1 --dump-caps         # what the dummy claims to do
+  rotctl -m 1 --dump-caps         # the dummy rotator's claims
+
+A SESSION (chapters 4-5)
+--------------------------------------------------------------------
+  rigctl -m 1                     # interactive; q quits
+  rigctl -m 1 -P RIG              # same, PTT type named (ch. 6)
+
+  f                               # get frequency (Hz)
+  F 14074000                      # set frequency (Hz, always Hz)
+  m                               # get mode + passband
+  M USB 2700                      # set mode + passband (Hz)
+  v                               # which VFO is current
+  l STRENGTH                      # read a level (the S-meter)
+  \get_freq  \set_freq            # the long names, same commands
+
+  printf 'f\nF 14074000\nf\nq\n' | rigctl -m 1
+                                  # the same session, from a pipe
+
+PTT (chapter 6)
+--------------------------------------------------------------------
+  t                               # PTT state: 0 receive, 1 transmit
+  T 1                             # key the transmitter
+  T 0                             # unkey it
+  # no -P, no keying: "Feature not available" is the lesson
+
+ROTATORS (chapter 7)
+--------------------------------------------------------------------
+  rotctl -m 1                     # interactive; q quits
+  \get_pos                        # Azimuth: / Elevation:
+  \set_pos 135 30                 # both values on ONE line
+  P                               # one-letter form PROMPTS for
+                                  # each value on its own line
+
+THE DAEMON (chapter 8)
+--------------------------------------------------------------------
+  rigctld -m 1 -P RIG -t 4532     # serve the dummy; Ctrl-C stops
+  rigctld -m <model> -r <dev> -s 38400 -t 4532
+                                  # the same, a real rig + speed
+
+  printf 'f\nq\n' | rigctl -m 2 -r 127.0.0.1:4532
+                                  # a client: model 2 is the door
+  printf 'f\n' | nc -q 1 127.0.0.1 4532
+                                  # no client at all: raw protocol
+  printf '\\dump_state\n' | nc -q 1 127.0.0.1 4532
+                                  # what the daemon's rig can do
+  rotctld -m 1 -t 4533            # the rotator daemon (same shape)
+
+DEBUGGING (chapter 11)
+--------------------------------------------------------------------
+  rigctl -m 1 -vvvvv              # -v stacks, up to five
+  # read the LAST negative returning(...) line: it names the
+  # layer and the error (-11 is "Feature not available")

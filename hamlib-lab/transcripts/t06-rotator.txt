@@ -1,0 +1,43 @@
+$ rotctl --list | wc -l
+51
+
+$ rotctl -m 1 --dump-caps | grep -E "Rot type|Min|Max|Can"
+Rot type:		Az-El
+Min Azimuth:		-180.00
+Max Azimuth:		450.00
+Min Elevation:		0.00
+Max Elevation:		90.00
+Can set Conf:		Y
+Can get Conf:		Y
+Can set Position:	Y
+Can get Position:	Y
+Can Stop:		Y
+Can Park:		Y
+Can Reset:		Y
+Can Move:		Y
+Can get Info:		Y
+Can get Status:		Y
+Can set Func:	Y
+Can get Func:	Y
+Can set Level:	Y
+Can get Level:	Y
+Can set Param:	Y
+Can get Param:	Y
+
+$ printf "\\\\set_pos 135 30\\\\n\\\\get_pos\\nq\\n" | rotctl -m 1
+
+Rotator command: Azimuth: Elevation: 
+Rotator command: Azimuth: 0.00
+Elevation: 0.00
+
+Rotator command: 
+$ the same pair with -vvvvv (proof the backend was called)
+dummy_rot_init called
+dummy_rot_open called
+dummy_rot_open: dummy rotator so simulating speed
+Rotator command: Azimuth: Elevation: rot_set_position called az=135.00 el=30.00
+dummy_rot_set_position called: 135.00 30.00
+dummy_rot_get_position called
+rot_get_position: got az=0.00, el=0.00
+dummy_rot_close called
+dummy_rot_cleanup called

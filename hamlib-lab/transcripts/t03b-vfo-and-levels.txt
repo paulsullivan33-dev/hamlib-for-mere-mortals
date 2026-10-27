@@ -1,0 +1,9 @@
+$ printf "v\\nl STRENGTH\\n\\\\get_powerstat\\nq\\n" | rigctl -m 1 -P RIG
+
+Rig command: VFO: VFOA
+
+Rig command: Level Value: -30
+
+Rig command: Power Status: 1
+
+Rig command: 

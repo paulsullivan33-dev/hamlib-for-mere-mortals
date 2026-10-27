@@ -1,0 +1,17 @@
+$ rigctl --version
+rigctl Hamlib 4.5.5 Apr 05 11:43:08Z 2023 SHA=6eecd3
+
+$ rigctld --version
+rigctl Hamlib 4.5.5 Apr 05 11:43:08Z 2023 SHA=6eecd3
+
+$ rotctl --version
+rotctl(d), Hamlib 4.5.5 Apr 05 11:43:08Z 2023 SHA=6eecd3
+
+Copyright (C) 2000-2012 Stephane Fillod
+Copyright (C) 2000-2003 Frank Singleton
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ rotctld --version
+rotctl(d), Hamlib 4.5.5 Apr 05 11:43:08Z 2023 SHA=6eecd3
+

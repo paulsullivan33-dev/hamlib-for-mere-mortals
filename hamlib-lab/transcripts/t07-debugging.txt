@@ -1,0 +1,41 @@
+$ printf "t\\nq\\n" | rigctl -m 1          (no -P RIG: the PTT type is unset)
+
+Rig command: get_ptt: error =  1:rig.c(1403):rig_open returning(0) 
+Backend version: 20221128.0, Status: Stable
+rigctl_parse: called, interactive=1
+rigctl_parse: cmd=t(74) handle=0
+rigctl_parse: vfo_opt=0
+ 1:rig.c(6084):rig_get_powerstat entered
+../../src/rig.c(6104) trace
+  2:dummy.c(1506):dummy_get_powerstat entered
+  2:dummy.c(1509):dummy_get_powerstat returning(0) 
+ 1:rig.c(6109):rig_get_powerstat returning(0) 
+ 1:rigctl_parse.c(2577):rigctl_get_ptt entered
+  2:rig.c(3331):rig_get_ptt entered
+rig_get_ptt: cache check age=1000000ms
+rig_get_ptt: cache miss age=1000000ms
+  2:rig_get_ptt: elapsed=0ms
+  2:rig.c(3587):rig_get_ptt returning(-11) Feature not available
+
+ 1:rigctl_parse.c(2583):rigctl_get_ptt returning(-11) Feature not available
+
+Feature not available
+
+
+Rig command:    [... trace trimmed; the full dump runs to dozens of lines ...]
+
+$ printf "f\\nq\\n" | rigctl -m 1 -vvvvv   (excerpt: the call chain of one get)
+initrigs4_dummy: _init called
+ 1:dummy.c(224):dummy_init entered
+dummy_init called
+ 1:dummy.c(306):dummy_init returning(0) 
+ 1:rig.c(817):rig_open entered
+rig_open: cwd=/home/hatch
+rig_open: /home/hatch/hamlib_settings does not exist
+rig_open: async_data_enable=1, async_data_supported=0
+  2:rig.c(7488):async_data_handler_start returning(0) 
+rig_open: 0x5c503dbd444c rs->comm_state==1?=1
+   3:dummy.c(1506):dummy_get_powerstat entered
+   3:dummy.c(1509):dummy_get_powerstat returning(0) 
+  2:rig.c(6109):rig_get_powerstat returning(0) 
+  2:dummy.c(339):dummy_open entered

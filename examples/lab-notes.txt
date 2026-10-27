@@ -1,0 +1,89 @@
+The lab — one real install, one machine, no radio at all
+====================================================================
+
+The lab is Hamlib as Ubuntu ships it,
+run on the build machine (an Ubuntu
+24.04 sandbox, 2 CPUs, 7.7 GB RAM):
+
+  * Hamlib 4.5.5 (Ubuntu packages
+    libhamlib-utils 4.5.5-3.2build2 and
+    the libraries it depends on:
+    libhamlib4t64, libindiclient1,
+    libnova-0.16-0t64). System-wide
+    installs are not available here, so
+    the .deb files were unpacked into
+    a private folder and the tools run
+    from there; the bytes are the
+    packaged bytes.
+  * The instruments are Hamlib's own
+    fakes: the dummy rig (model 1) and
+    the dummy rotator (model 1),
+    served and queried on loopback
+    only (127.0.0.1, port 4532).
+  * No radio, no serial device, no
+    antenna was connected at any
+    point. Nothing was transmitted,
+    because there was nothing to
+    transmit with. Serial reality
+    checks recorded in t90: a dialout
+    group exists; no /dev/ttyUSB* or
+    /dev/ttyACM* devices are present.
+
+What the lab ran, in
+hamlib-lab/transcripts/:
+
+  * t00 versions of all four tools
+    (rigctl, rigctld, rotctl,
+    rotctld), all Hamlib 4.5.5.
+  * t01 the model lists: 284 lines
+    for rigs (dummy at 1, NET rigctl
+    at 2, Dummy No VFO at 6), about
+    fifty for rotators.
+  * t02 the dummy's capabilities
+    dump, 221 lines.
+  * t03 a first session: frequency
+    145000000 -> 14074000 read back;
+    mode FM/15000 -> USB/2700.
+  * t03b the VFO query (VFOA), a
+    signal-strength level (invented;
+    -37 and -30 on two calls), and
+    the power status.
+  * t04 PTT with -P RIG: t reads 0,
+    T 1, t reads 1, T 0, t reads 0.
+    The same session WITHOUT -P
+    fails: "Feature not available"
+    (its trace is t07).
+  * t05 rigctld on the dummy: client
+    A sets 7074000; a separate client
+    B connects and reads 7074000 —
+    shared state, proven; client C
+    keys PTT through the daemon.
+  * t05b the raw protocol by netcat:
+    f and \get_freq -> the bare
+    frequency; F 14060000 -> RPRT 0;
+    a nonsense command Z -> silence;
+    \dump_state -> the dummy's
+    150 kHz to 1.5 GHz range.
+  * t06 the dummy rotator: caps
+    (Az-El, -180..450 azimuth),
+    \set_pos 135 30 accepted — and
+    \get_pos still 0.00/0.00, with
+    the -vvvvv lines proving the
+    backend was called. The dummy
+    accepts positions it never
+    moves to.
+  * t07 debugging: the error
+    ring-dump of the failed t, down
+    to "returning(-11) Feature not
+    available", and the call chain
+    of a good f at -vvvvv.
+  * t90 the serial reality check
+    described above.
+
+Kept honest in criteria.md:
+Fldigi and WSJT-X screens, real
+serial radios, rotctld, split
+operation and systemd services are
+described from documentation, not
+run. The Hamlib layer beneath all
+of them was run, and is above.
